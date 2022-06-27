@@ -1,0 +1,1 @@
+# practice-for-week-12-sequelize-scope-short-practice
