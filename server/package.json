@@ -18,6 +18,7 @@
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
+    "dotenv-cli": "^5.1.0",
     "nodemon": "^2.0.12"
   }
 }
