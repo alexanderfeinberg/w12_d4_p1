@@ -24,25 +24,25 @@ app.get('/instruments', async (req, res, next) => {
 
 // STEP 2: Implement named scopes to their respective routes
 app.get('/instruments/keyboard', async (req, res, next) => {
-    const keyboards = await Instrument.findAll()
+    const keyboards = await Instrument.scope(["defaultScope",{method:['getInstrument','keyboard']}]).findAll()
     res.json(keyboards);
 });
 
 
 app.get('/instruments/string', async (req, res, next) => {
-    const strings = await Instrument.findAll()
+    const strings = await Instrument.scope(["defaultScope",{method:['getInstrument','string']}]).findAll()
     res.json(strings);
 });
 
 app.get('/instruments/woodwind', async (req, res, next) => {
-    const woodWinds = await Instrument.findAll()
+    const woodWinds = await Instrument.scope(["defaultScope",{method:['getInstrument','woodwind']}]).findAll()
     res.json(woodWinds);
 });
 
 // STEP 3 CHALLENGE: Implement the named function scopes to their dynamic routes
 // and returning the list in order by their names alphabetically
 app.get('/stores/:storeId/instruments', async (req, res, next) => {
-    const filterStoreInstruments = await Instrument.findAll()
+    const filterStoreInstruments = await Instrument.scope(["defaultScope",{method:["getStoreIns",req.params.storeId, Store]}]).findAll()
     // Your code here
     res.json(filterStoreInstruments);
 });

@@ -21,6 +21,27 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Instrument',
+    defaultScope:{
+      attributes:{
+        exclude:["createdAt","updatedAt"]
+      }
+    },
+    scopes:{
+      getInstrument: function(instrumentType){
+        return {
+          where:{
+            type: instrumentType
+          }
+        }
+      },
+      getStoreIns: function(storeId, storeModel){
+        return {
+          where:{
+            storeId: storeId
+          },
+          include:[{model:storeModel}]}
+      }
+    }
   });
   return Instrument;
 };
